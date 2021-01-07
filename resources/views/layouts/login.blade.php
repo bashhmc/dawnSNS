@@ -5,7 +5,7 @@
     <!--IEブラウザ対策-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
-    <title></title>
+    <title>dawn-SNS</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <!--スマホ,タブレット対応-->
@@ -21,16 +21,21 @@
 </head>
 <body>
     <header>
-        <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
+        <div id = "head" class="head">
+        <h1><a href="/top"><img src="images/main_logo.png"></a></h1>
+            <div class="menu">
+                <div class="user-info">
+                    <p><a class="a-click" href="#">{{ $auths -> username }} さん</a>
+                    <!-- jQuery で arrow を反転指せる -->
+                    <span class="arrow"> ∨ </span>
+                    <img src= "images/{{ $auths -> images }}" ></p>
+                </div>
+                <ul class="a-contents">
+                    <!-- ↓アコーディオンメニュー↓ -->
+                    <li><a href="/top">HOME</a></li>
+                    <li><a href="/profile">プロフィール編集</a></li>
                     <li><a href="/logout">ログアウト</a></li>
+                    <!-- ここまでアコーディオン -->
                 </ul>
             </div>
         </div>
@@ -39,26 +44,31 @@
         <div id="container">
             @yield('content')
         </div >
+        <!-- ↓サイドバー↓ -->
+
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
-                <div>
-                <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p>{{ $auths -> username }}さんの</p>
+                <div class="follow">
+                  <p>フォロー数</p>
+                  <p>{{ $auths -> followersCount() }}名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
-                <div>
-                <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
+                <div class="follower">
+                  <p>フォロワー数</p>
+                  <p>{{ $auths -> followsCount() }}名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <div class="search">
+              <p class="btn"><a href="/search">ユーザー検索</a></p>
+            </div>
         </div>
+        <!-- ここまでサイドバー -->
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/script.js" type="text/javascript" charset="UTF-8"></script>
 </body>
 </html>

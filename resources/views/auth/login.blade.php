@@ -2,16 +2,18 @@
 
 @section('content')
 
-{!! Form::open() !!}
+<!-- フォームファサードでurlを指定 -->
+<!-- URLはまだコントローラもルーティングも未指定 -->
+{!! Form::open(['url' => '/login']) !!}
 
 <p>DAWNSNSへようこそ</p>
 
-{{ Form::label('e-mail') }}
+{{ Form::label('MailAddress') }}
 {{ Form::text('mail',null,['class' => 'input']) }}
-{{ Form::label('password') }}
+{{ Form::label('Password') }}
 {{ Form::password('password',['class' => 'input']) }}
 
-{{ Form::submit('ログイン') }}
+{{ Form::submit('LOGIN') }}
 
 <p><a href="/register">新規ユーザーの方はこちら</a></p>
 
