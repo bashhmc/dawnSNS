@@ -29,7 +29,7 @@ Route::post('/register', 'Auth\RegisterController@postRegister');
 
 Route::get('/added', 'Auth\RegisterController@added');
 
-
+// あいうえお
 //ログイン中のページ
 Route::get('/top','PostsController@index')->name('top');
 
