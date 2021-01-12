@@ -17,6 +17,7 @@ class UsersController extends Controller
         }
         //falseだった場合は、return view('/login');になる？
     }
+
     public function search(){
         if(Auth::check)
         {

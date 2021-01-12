@@ -35,14 +35,6 @@ class User extends Authenticatable
         return $this->hasMany(Post::class, 'user_id', 'id');
     }
 
-    // public function followPost()
-    // {
-    //     $id = Auth::id();
-    //     $followerId = DB::table('follows')->where('follower',$id)->select('follow')->get();
-    //     $followsPosts = DB::table('posts')->where('user_id',$followerId)->latest()->get();
-    //     return $followPosts;
-    // }
-
     /**
      * The attributes that are mass assignable.
      *
