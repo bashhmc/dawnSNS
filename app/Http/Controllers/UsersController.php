@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
-
+use App\Models\User;
+use App\Models\Follow;
 
 class UsersController extends Controller
 {
@@ -23,6 +24,16 @@ class UsersController extends Controller
         return view('users.search');
         }
         //falseだった場合は、return view('/login');になる？
+    }
+
+    public function index(Request $request)
+    {
+        if($request->filled('searchInput'))
+        {
+
+        }
+        $searchAlls = User::get();
+        return view('users.search' , [ 'searchAlls' => $searchAlls]);
     }
 
     public function logout()
