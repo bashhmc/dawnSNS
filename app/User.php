@@ -11,11 +11,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    // public function follows()
-    // {
-    //     return $this->belongsTo(Follow::class, 'id', 'id');
-    // }
-
     public function followsCount()
     {
         $id = Auth::id();
@@ -33,6 +28,16 @@ class User extends Authenticatable
     public function post()
     {
         return $this->hasMany(Post::class, 'user_id', 'id');
+    }
+
+    public function follows()
+    {
+        return $this->belongsToMany(Follow::class, 'follows', 'follow', 'follower');
+    }
+
+    public function isFollowing(Int $user_id , Int $users_id)
+    {
+        return (boolean) Follow::where('follower',$user_id)->where('follow',$users_id)->first(['id']);
     }
 
     /**

@@ -28,12 +28,14 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
+        $auths = Auth::user();
+        $id = Auth::id();
         if($request->filled('searchInput'))
         {
 
         }
-        $searchAlls = User::get();
-        return view('users.search' , [ 'searchAlls' => $searchAlls]);
+        $searchAlls = User::whereNotIn('id', [$id])->get();
+        return view('users.search' , [ 'auths' => $auths , 'searchAlls' => $searchAlls]);
     }
 
     public function logout()

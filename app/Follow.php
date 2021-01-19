@@ -9,7 +9,7 @@ class Follow extends Model
 
     public function user()
     {
-        return $this->hasMany(User::class, 'id', 'id');
+        return $this->hasMany(User::class,  'id', 'follow', 'follower');
     }
 
 }
