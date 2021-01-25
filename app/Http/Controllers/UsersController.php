@@ -11,12 +11,15 @@ use App\Models\Follow;
 class UsersController extends Controller
 {
     //
-    public function profile(){
-        if(Auth::check)
-        {
-            return view('users.profile');
-        }
-        //falseだった場合は、return view('/login');になる？
+    public function profile($id){
+        $auths = Auth::user();
+
+        $user_profiles = User::where('id',$id)->get();
+        return view('users.profile',['auths'=>$auths , 'user_profiles'=>$user_profiles]);
+        // if(Auth::check)
+        // {
+        //     return view('users.profile');
+        // }
     }
     public function search(){
         if(Auth::check)
@@ -30,10 +33,35 @@ class UsersController extends Controller
     {
         $auths = Auth::user();
         $id = Auth::id();
+
         if($request->filled('searchInput'))
         {
+            $searchInput = $request->input('searchInput');
 
+            $searchAlls = User::where('username','LIKE',"%$searchInput%")->whereNotIn('id', [$id])->get();
+
+            return view('users.search' , [ 'auths' => $auths , 'searchAlls' => $searchAlls]);
         }
+        elseif($request->filled('follow'))
+        {
+            $followId = $request->input('follow');
+
+            Follow::create([
+                'follow' => $followId,
+                'follower' => $id,
+            ]);
+
+            return redirect('/search');
+        }
+        elseif($request->filled('unfollow'))
+        {
+            $unfollowId = $request->input('unfollow');
+
+            Follow::where('follow',$unfollowId)->where('follower',$id)->delete();
+
+            return redirect('/search');
+        }
+
         $searchAlls = User::whereNotIn('id', [$id])->get();
         return view('users.search' , [ 'auths' => $auths , 'searchAlls' => $searchAlls]);
     }

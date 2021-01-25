@@ -34,10 +34,9 @@ Route::get('/top','PostsController@index')->name('top');
 
 Route::get('/logout','UsersController@logout');
 
-Route::get('/profile' , 'UsersController@profile');
+Route::get('/profile/{id}' , 'UsersController@profile');
 
 Route::get('/search','UsersController@index');
 
-//Auth::check未設定
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+Route::get('/follow-list','FollowsController@followList');
+Route::get('/follower-list','FollowsController@followerList');

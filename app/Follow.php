@@ -12,4 +12,10 @@ class Follow extends Model
         return $this->hasMany(User::class,  'id', 'follow', 'follower');
     }
 
+    protected $fillable = [
+        'follow', 'follower',
+    ];
+
+    public $timestamps = false;
+
 }

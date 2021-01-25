@@ -20,11 +20,12 @@
   <div id="serPost" class="user-post">
     <img class="user-post-image" src="images/{{ $timeLine -> user -> images}}" alt="user-image">
     <p class="post-username">{{ $timeLine -> user -> username}}</p>
-    <!-- ↑コントローラーメソッドと、モデルのプロパティは同時使用可能 -->
     <p class="post-created-at">{{ $timeLine -> created_at }}</p>
     <p class="post-contents">{{ $timeLine -> posts }}</p>
-    <a class="post-edit" href=""><img src="images/trash.png" alt="post-trash-image"></a>
-    <a class="post-edit" href=""><img src="images/edit.png" alt="post-edit-image"></a>
+      @if($auths->post->userPost($auths->id,$timeLine->user_id))
+        <a class="post-edit" href=""><img class="trash" src="images/trash.png" alt="post-trash-image"></a>
+        <a class="post-edit" href=""><img src="images/edit.png" alt="post-edit-image"></a>
+      @endif
   </div>
   @endforeach
 </div>

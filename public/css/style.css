@@ -166,6 +166,7 @@ header{
     width:100%;
     border-bottom: 2px solid silver;
     height: auto;
+    min-height: 9vw;
     overflow: hidden;
 }
 
@@ -182,8 +183,7 @@ header{
 }
 
 .post-created-at{
-    float: right;
-    margin: 2vw 2vw 0 0;
+    margin: 2vw 0 0 50vw;
     display: inline-block;
 }
 
@@ -194,4 +194,98 @@ header{
 .post-edit{
     float: right;
     margin-right: 2vw;
+}
+
+.trash:hover{
+    background-image: url("../images/trash_h.png");
+}
+
+
+/* Search */
+
+.search-form{
+    border-bottom: 5px solid silver;
+}
+
+.search-input{
+    margin: 2vw 0vw 2vw 5vw;
+}
+
+.search-input-form{
+    padding: 0.7vw 12vw 0.7vw 0.2vw ;
+    border-radius: 0.3vw;
+    border:medium solid silver;
+}
+
+.btn-search{
+    border-radius: 0.3vw;
+    background-color: #3C4767;
+    vertical-align: middle;
+}
+
+.search-btn-image{
+    width:1.5vw;
+}
+
+.search-users{
+    margin: 2vw 0vw 0vw 5vw;
+}
+
+.search-user{
+    margin: 2vw 0vw;
+}
+
+.search-user-image{
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.search-username{
+    display: inline;
+    margin-left: 1vw;
+}
+
+.search-follow ,.search-unfollow{
+    display: inline;
+    margin-left: 30vw;
+}
+
+.follow-btn{
+    padding: 0.6vw;
+    width: 9vw;
+    border: none;
+    border-radius: 0.2vw;
+    background-color: #6782be;
+    color: white;
+}
+
+.un{
+    background-color: #b83d4e;
+}
+
+/* follow list */
+.follow-list-images{
+    padding-top: 1.5vw;
+    border-bottom: 2px solid silver;
+}
+
+.follow-list-images p{
+    margin: 0 0 1.5vw 4vw;
+    font-size: 1.5vw;
+    color: gray;
+}
+
+.follow-images{
+    padding-left: 6vw;
+    min-height: 10vw;
+    max-width: 80%;
+}
+
+.follow-image{
+    display: inline;
+    padding: 0 0 1.2vw 2vw;
+}
+
+.follow-image img{
+    border-radius: 50%;
 }
