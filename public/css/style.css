@@ -194,10 +194,69 @@ header{
 .post-edit{
     float: right;
     margin-right: 2vw;
+    background: none;
+    border: none;
+}
+
+.post-trash{
+    float: right;
+    margin-right: 2vw;
+    background: none;
+    border: none;
 }
 
 .trash:hover{
     background-image: url("../images/trash_h.png");
+}
+
+.edit-modal{
+    display: none;
+}
+
+.inner {
+  width: 100%;
+  height: 100%;
+  background-color: rgba( 51, 51, 51, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.inner-contents{
+  padding: 1vw;
+  margin-bottom: 1vw;
+  border: 2px solid gray;
+  position: fixed;
+  top: 10vw;
+  left: 24vw;
+  width: 50%;
+  height: 30%;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 5;
+}
+
+.user-post-edit-contents{
+  color: gray;
+  width: 90%;
+  height: 7vw;
+  border: 2px solid gray;
+  border-radius: 5px;
+  margin-left: 2vw;
+}
+
+.contents-validator{
+  color: orange;
+  float: left;
+  margin: 1vw 0 0 2vw;
+}
+
+.inner-post-edit-image{
+  border: none;
+  background-color: white;
+  margin:0.5vw 0 0 6vw;
 }
 
 
@@ -205,6 +264,13 @@ header{
 
 .search-form{
     border-bottom: 5px solid silver;
+}
+
+.search-word{
+    padding: 1vw 17vw 0 0;
+    float: right;
+    color: gray;
+    font-size: 1.2vw;
 }
 
 .search-input{
@@ -288,4 +354,42 @@ header{
 
 .follow-image img{
     border-radius: 50%;
+}
+
+/* profile */
+
+.profile{
+    padding: 2vw 0 0 6vw;
+    border-bottom: 2px solid silver;
+    min-height: 10vw;
+}
+
+.profile-user-image{
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.profile-name,.profile-name p{
+    display: inline;
+    padding-left: 1vw;
+}
+
+.profile-username{
+    margin-left: 3vw;
+}
+
+.profile-bio{
+    padding: 1vw 0 0 6vw;
+}
+
+.profile-bio p{
+    display: inline;
+}
+
+.profile-user-bio{
+    padding-left: 5.4vw;
+}
+
+.p-follow{
+    padding-left: 30vw;
 }

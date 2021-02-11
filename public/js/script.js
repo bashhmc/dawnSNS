@@ -10,4 +10,18 @@ $(function () {
       $(".arrow").css("transform", "rotateX(180deg)");
     }
   });
+
+  $(".post-edit").each(function () {
+    $(this).on('click', function () {
+      var target = $(this).data('target');
+      var modal = document.getElementById(target);
+      console.log(modal);
+      $(modal).fadeIn();
+      return false;
+    });
+  });
+  $(".inner").on('click', function () {
+    $('.edit-modal').fadeOut();
+    return false;
+  })
 });

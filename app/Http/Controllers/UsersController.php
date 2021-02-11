@@ -15,18 +15,12 @@ class UsersController extends Controller
         $auths = Auth::user();
 
         $user_profiles = User::where('id',$id)->get();
+
         return view('users.profile',['auths'=>$auths , 'user_profiles'=>$user_profiles]);
         // if(Auth::check)
         // {
         //     return view('users.profile');
         // }
-    }
-    public function search(){
-        if(Auth::check)
-        {
-        return view('users.search');
-        }
-        //falseだった場合は、return view('/login');になる？
     }
 
     public function index(Request $request)
@@ -40,7 +34,7 @@ class UsersController extends Controller
 
             $searchAlls = User::where('username','LIKE',"%$searchInput%")->whereNotIn('id', [$id])->get();
 
-            return view('users.search' , [ 'auths' => $auths , 'searchAlls' => $searchAlls]);
+            return view('users.search' , [ 'auths' => $auths , 'searchAlls' => $searchAlls,'searchInput' => $searchInput]);
         }
         elseif($request->filled('follow'))
         {

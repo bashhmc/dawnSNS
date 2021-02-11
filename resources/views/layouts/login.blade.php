@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title>dawn-SNS</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('css/reset.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -22,13 +22,13 @@
 <body>
     <header>
         <div id = "head" class="head">
-        <h1><a href="/top"><img src="images/main_logo.png"></a></h1>
+        <h1><a href="/top"><img src="{{asset('images/main_logo.png')}}"></a></h1>
             <div class="menu">
                 <div class="user-info">
                     <p><a class="a-click" href="#">{{ $auths -> username }} さん</a>
                     <!-- jQuery で arrow を反転指せる -->
                     <span class="arrow"> ∨ </span>
-                    <img src= "images/{{ $auths -> images }}" ></p>
+                    <img src= "{{ asset('images/'. $auths -> images) }}" ></p>
                 </div>
                 <ul class="a-contents">
                     <!-- ↓アコーディオンメニュー↓ -->
@@ -68,7 +68,7 @@
     </div>
     <footer>
     </footer>
-    <script src="js/jquery-3.5.1.min.js"></script>
-    <script src="js/script.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
+    <script src="{{asset('js/script.js')}}" type="text/javascript" charset="UTF-8"></script>
 </body>
 </html>

@@ -40,10 +40,6 @@ class User extends Authenticatable
         return (boolean) Follow::where('follower',$user_id)->where('follow',$users_id)->first(['id']);
     }
 
-    // public function userPost(Int $user_id, Int $users_id)
-    // {
-    //     return  $user_id == $users_id;
-    // }
 
     /**
      * The attributes that are mass assignable.

@@ -39,6 +39,23 @@ class PostsController extends Controller
             ]);
         return redirect('/top');
         }
+        elseif($request->filled('editPost'))
+        {
+            $post_id = $request->input('id');
+            $user_editPost = $request->input('editPost');
+
+            Post::where('id',$post_id)->update(['post' => $user_editPost]);
+
+            return redirect('/top');
+        }
+        elseif($request->filled('trashId'))
+        {
+            $post_id = $request->input('trashId');
+
+            Post::where('id',$post_id)->delete();
+
+            return redirect('/top');
+        }
 
         return view('posts.index' , [ 'auths' => $auths , 'timeLines' => $timeLines]);
 

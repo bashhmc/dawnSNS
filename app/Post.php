@@ -31,5 +31,5 @@ class Post extends Model
         'user_id', 'posts'
     ];
 
-    public $timestamps = false;
+    // public $timestamps = false;
 }
