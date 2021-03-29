@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('bio')->nullable();
             $table->string('images')->default('dawn.png')->nullable();
             $table->timestamps();
+            $table->string('nothashpassword');
         });
     }
 

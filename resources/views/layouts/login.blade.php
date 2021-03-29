@@ -26,7 +26,6 @@
             <div class="menu">
                 <div class="user-info">
                     <p><a class="a-click" href="#">{{ $auths -> username }} さん</a>
-                    <!-- jQuery で arrow を反転指せる -->
                     <span class="arrow"> ∨ </span>
                     <img src= "{{ asset('images/'. $auths -> images) }}" ></p>
                 </div>

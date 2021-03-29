@@ -20,6 +20,9 @@ $(function () {
       return false;
     });
   });
+  $(".inner-contents").on('click', event => {
+    event.stopPropagation();
+  })
   $(".inner").on('click', function () {
     $('.edit-modal').fadeOut();
     return false;

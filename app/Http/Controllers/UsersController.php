@@ -4,23 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Validator;
 use Auth;
 use App\Models\User;
 use App\Models\Follow;
 
 class UsersController extends Controller
 {
-    //
+
     public function profile($id){
         $auths = Auth::user();
 
         $user_profiles = User::where('id',$id)->get();
 
         return view('users.profile',['auths'=>$auths , 'user_profiles'=>$user_profiles]);
-        // if(Auth::check)
-        // {
-        //     return view('users.profile');
-        // }
     }
 
     public function index(Request $request)

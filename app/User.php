@@ -40,6 +40,10 @@ class User extends Authenticatable
         return (boolean) Follow::where('follower',$user_id)->where('follow',$users_id)->first(['id']);
     }
 
+    public function myProfile(Int $user_id , Int $users_id)
+    {
+        return (boolean) $user_id === $user_id;
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -47,7 +51,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'mail', 'password',
+        'username', 'mail', 'password', 'nothashpassword', 'bio', 'images',
     ];
 
     /**
@@ -59,7 +63,7 @@ class User extends Authenticatable
     protected $remember_token = false;
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'nothashpassword', 'remember_token',
     ];
 
 }

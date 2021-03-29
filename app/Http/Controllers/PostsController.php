@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\Collection;
 use Auth;
 use App\Models\User;
@@ -44,7 +45,7 @@ class PostsController extends Controller
             $post_id = $request->input('id');
             $user_editPost = $request->input('editPost');
 
-            Post::where('id',$post_id)->update(['post' => $user_editPost]);
+            Post::where('id',$post_id)->update(['posts' => $user_editPost]);
 
             return redirect('/top');
         }
@@ -59,6 +60,102 @@ class PostsController extends Controller
 
         return view('posts.index' , [ 'auths' => $auths , 'timeLines' => $timeLines]);
 
+    }
+
+
+    public function profile(Request $request){
+        $auths = Auth::user();
+        $id = Auth::id();
+
+        $user_profiles = User::where('id',$id)->get();
+        $all_form = "";
+
+    $validateRules = [
+        'username' => 'required|min:4|max:12',
+        'mail' => 'required|min:4|max:12|unique:users,mail,'.$id.'',
+        'new-password' => 'nullable|numeric|digits_between:4,12|unique:users,password',
+        'bio' => 'max:200',
+        'image-file' => 'image',
+    ];
+
+    $validateMessages = [
+        "required" => "入力必須",
+        "username.min" => "ユーザーネームは4文字以上から",
+        "mail.min" => "メールアドレスは4文字以上から",
+        "password.min" => "パスワードは4文字以上から",
+        "username.max" => "ユーザーネームは12文字以内",
+        "mail.max" => "メールアドレスは12文字以内",
+        "password.max" => "パスワードは12文字以内",
+        "digits_between" => "4字以上12字以内",
+        "unique" => "既に存在します",
+        "image" => "jpg,png,bmp,gif,svgの拡張子のみ有効です"
+    ];
+
+        if($request->filled('username'))
+        {
+            $auth_id = User::find($id);
+            $all_form = $request->all();
+            $val = Validator::make
+            (
+            $all_form,
+            $validateRules,
+            $validateMessages
+            );
+
+            // image file名を作成&保存
+            $form_image = $request->file('image-file');
+            if(isset($form_image))
+            {
+                $form_image_getName = $request->file('image-file')->getClientOriginalName();
+                $request->file('image-file')->storeAs('images',$form_image_getName, 'public');
+            } else {
+                $form_image_getName=$auths->id.".png";
+            }
+
+            // バリデーション
+            if($val->fails())
+            {
+               return back()->withErrors($val)->WithInput();
+            }
+
+            // 更新
+            if(is_null($all_form['new-password']))
+            {
+            $auth_id
+            ->fill([
+                'username'=>$all_form['username'],
+                'mail'=>$all_form['mail'],
+                'password'=>bcrypt($all_form['new-password']),
+                'bio'=>$all_form['bio'],
+                'images'=>$form_image_getName,])
+            ->save();
+            } else
+            {
+            $auth_id
+            ->fill([
+                'username'=>$all_form['username'],
+                'mail'=>$all_form['mail'],
+                'password'=>bcrypt($all_form['new-password']),
+                'bio'=>$all_form['bio'],
+                'images'=>$form_image_getName,
+                'nothashpassword'=>$all_form['new-password']])
+            ->save();
+            }
+
+        // $auth_id
+        // ->fill([
+        //     'username'=>$all_form['username'],
+        //     'mail'=>$all_form['mail'],
+        //     'password'=>bcrypt($all_form['new-password']),
+        //     'bio'=>$all_form['bio'],
+        //     'images'=>$form_image_getName,
+        //     'nothashpassword'=>$all_form['new-password']])
+        // ->save();
+
+        return view('users.profile',['auths'=>$auths , 'user_profiles'=>$user_profiles]);
+        }
+
+        return view('users.profile',['auths'=>$auths ,'user_profiles'=>$user_profiles]);
     }
 
 

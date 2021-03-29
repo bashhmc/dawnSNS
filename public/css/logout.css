@@ -5,5 +5,154 @@ html{
 }
 body{
     height: 100%;
-    background: #3C4767;
+    background: linear-gradient(#3C4767 50%,#cd5c5c);
+    color: white;
+}
+
+/* Login form */
+
+p{
+    text-align: center;
+    font-size: 1vw;
+}
+
+h1 img{
+    margin-top: 8vw;
+    margin-left: 43%;
+}
+
+.login-subtitle{
+    text-align: center;
+    font-size: 2vw;
+}
+
+.container{
+    color: white;
+    background: rgba(43, 49, 63, 0.5);
+    width: 15vw;
+    padding: 3vw 2vw 1vw 2vw;
+    border-radius: 1vw;
+    margin-top: 5vw;
+    margin-left: 41%;
+}
+
+.label-mail{
+    display: inline-block;
+    margin: 2vw 0 0.5vw 0;
+}
+
+.login-input{
+    padding-right: 4vw;
+    border-radius: 5px;
+}
+
+.label-password{
+    display: inline-block;
+    margin: 1vw 0 0.5vw 0;
+}
+
+.login-form-btn{
+    display: block;
+    margin: 1vw 0 0 9vw;
+    background-color: #445999;
+    color: white;
+    padding: 0.2vw 1.5vw;
+    border: none;
+    border-radius: 0.2vw;
+}
+
+.login-new-account{
+    color: white;
+    display: inline-block;
+    margin-top: 3vw;
+}
+
+/* Register form */
+
+.register-container{
+    color: white;
+    background: rgba(43, 49, 63, 0.5);
+    width: 15vw;
+    padding: 3vw 2vw 1vw 2vw;
+    border-radius: 1vw;
+    margin-left: 41%;
+}
+
+h2{
+    text-align: center;
+}
+
+.label-register{
+    display: inline-block;
+}
+
+.register-username{
+    margin: 3vw 0 0.5vw 0;
+}
+
+.register-mail{
+    margin: 1vw 0 0.5vw 0;
+}
+
+.register-password{
+    margin: 1vw 0 0.5vw 0;
+}
+
+.register-con-password{
+    margin: 1vw 0 0.5vw 0;
+}
+
+.register-input{
+    padding-right: 4vw;
+    border-radius: 5px;
+}
+
+.register-form-btn{
+    display: block;
+    margin: 1vw 0 0 9vw;
+    background-color: #445999;
+    color: white;
+    padding: 0.2vw 1.5vw;
+    border: none;
+    border-radius: 0.2vw;
+}
+
+.back-login-form{
+    color: white;
+    display: inline-block;
+    margin-top: 3vw;
+}
+
+/* Add form */
+
+.add-container{
+    color: white;
+    background: rgba(43, 49, 63, 0.5);
+    width: 18vw;
+    padding: 2vw 1vw 3vw 1vw;
+    border-radius: 0.5vw;
+    margin-left: 41%;
+}
+
+.add-welcome{
+    margin: 0.5vw 0 1vw 0;
+}
+
+.add-done{
+    margin: 1vw 0 0.5vw 0;
+    text-align: left;
+}
+
+.add-lets{
+    margin-bottom: 2vw;
+    text-align: left;
+}
+
+
+.add-btn{
+    color: white;
+    background-color: #445999;
+    padding: 0.2vw 1.5vw;
+    border: none;
+    border-radius: 0.2vw;
 }

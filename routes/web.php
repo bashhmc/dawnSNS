@@ -36,6 +36,9 @@ Route::get('/logout','UsersController@logout');
 
 Route::get('/profile/{id}' , 'UsersController@profile');
 
+Route::get('/profile' , 'PostsController@profile');
+Route::post('/profile' , 'PostsController@profile');
+
 Route::get('/search','UsersController@index');
 
 Route::get('/follow-list','FollowsController@followList');

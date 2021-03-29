@@ -18,9 +18,15 @@
   <!-- タイムライン形式で表示 -->
   @foreach ($timeLines as $timeLine)
   <div id="serPost" class="user-post">
+  @if($auths->id === $timeLine->user->id)
+    <a href="/profile">
+      <img class="user-post-image" src="images/{{ $timeLine -> user -> images}}" alt="user-image">
+    </a>
+  @else
     <a href="/profile/{{ $timeLine -> user_id}}">
       <img class="user-post-image" src="images/{{ $timeLine -> user -> images}}" alt="user-image">
     </a>
+  @endif
     <p class="post-username">{{ $timeLine -> user -> username}}</p>
     <p class="post-created-at">{{ $timeLine -> created_at }}</p>
     <p class="post-contents">{{ $timeLine -> posts }}</p>
