@@ -308,6 +308,8 @@ header{
 .search-user-image{
     border-radius: 50%;
     vertical-align: middle;
+    max-width: 3.6vw;
+    max-height: 3.6vw;
 }
 
 .search-username{
@@ -355,10 +357,14 @@ header{
 .follow-image{
     display: inline;
     padding: 0 0 1.2vw 2vw;
+    max-width: 3.6vw;
+    max-height: 3.6vw;
 }
 
 .follow-image img{
     border-radius: 50%;
+    max-width: 3.6vw;
+    max-height: 3.6vw;
 }
 
 /* profile */
@@ -372,6 +378,8 @@ header{
 .profile-user-image{
     border-radius: 50%;
     vertical-align: middle;
+    max-width: 3.6vw;
+    max-height: 3.6vw;
 }
 
 .profile-name,.profile-name p{
@@ -381,6 +389,8 @@ header{
 
 .profile-username{
     margin-left: 3vw;
+    max-width: 3.6vw;
+    max-height: 3.6vw;
 }
 
 .profile-bio{

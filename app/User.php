@@ -14,14 +14,14 @@ class User extends Authenticatable
     public function followsCount()
     {
         $id = Auth::id();
-        $followCount = DB::table('follows')->where('follow', $id)->count();
+        $followCount = Follow::where('follow', $id)->count();
         return $followCount;
     }
 
     public function followersCount()
     {
         $id = Auth::id();
-        $followerCount = DB::table('follows')->where('follower', $id)->count();
+        $followerCount = Follow::where('follower', $id)->count();
         return $followerCount;
     }
 
@@ -38,11 +38,6 @@ class User extends Authenticatable
     public function isFollowing(Int $user_id , Int $users_id)
     {
         return (boolean) Follow::where('follower',$user_id)->where('follow',$users_id)->first(['id']);
-    }
-
-    public function myProfile(Int $user_id , Int $users_id)
-    {
-        return (boolean) $user_id === $user_id;
     }
 
     /**

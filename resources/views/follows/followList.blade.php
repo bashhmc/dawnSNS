@@ -5,10 +5,10 @@
 <div class="follow-list-images">
   <p>Follow list</p>
   <div class="follow-images">
-  @foreach ($timeLines as $timeLine)
+  @foreach ($follow_id_lists as $follow_id_list)
     <div class="follow-image">
-      <a href="/profile/{{ $timeLine -> user -> id}}">
-        <img src="images/{{ $timeLine -> user -> images}}" alt="follow image">
+      <a href="/profile/{{ $follow_id_list -> id}}">
+        <img src="images/{{ $follow_id_list -> images}}" alt="follow image">
       </a>
     </div>
   @endforeach

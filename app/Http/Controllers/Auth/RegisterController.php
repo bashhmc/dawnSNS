@@ -49,10 +49,10 @@ class RegisterController extends Controller
      */
 
     public $validateRules = [
-            'username' => 'required|min:4|max:12',
-            'mail' => 'required|min:4|max:12|unique:users,mail',
-            'password' => 'required|numeric|digits_between:4,12|unique:users,password,|confirmed',
-            'password_confirmation' => 'required',
+        'username' => 'required|min:4|max:12',
+        'mail' => 'required|min:4|max:12|unique:users,mail',
+        'password' => 'required|numeric|digits_between:4,12|unique:users,password,|confirmed',
+        'password_confirmation' => 'required',
     ];
 
     public $validateMessages = [
@@ -65,6 +65,10 @@ class RegisterController extends Controller
         "confirmed" => "パスワードが一致しません"
     ];
 
+    public function getRegister(){
+        return view('auth.register');
+    }
+
     protected function postRegister(Request $request)
     {
         $data = Request::all();
@@ -72,16 +76,15 @@ class RegisterController extends Controller
             $data,
             $this->validateRules,
             $this->validateMessages
-    );
-    // NGの場合
+        );
+    // NG
     if($val->fails()){
         return redirect('/register')->withErrors($val)->WithInput();
     }
-    // OKの場合
-            $this->create($data);
-            return redirect('/added')->WithInput();
+    // OK
+        $this->create($data);
+        return redirect('/added')->WithInput();
     }
-
 
     /**
      * Create a new user instance after a valid registration.
@@ -95,12 +98,8 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'mail' => $data['mail'],
             'password' => bcrypt($data['password']),
-            'password_confirmation' => $data['nothashpassword'],
+            'nothashpassword' => $data['password_confirmation'],
         ]);
-    }
-
-    public function getRegister(){
-        return view('auth.register');
     }
 
     public function added(){

@@ -20,18 +20,19 @@ class UsersController extends Controller
         return view('users.profile',['auths'=>$auths , 'user_profiles'=>$user_profiles]);
     }
 
-    public function index(Request $request)
+    public function search(Request $request)
     {
         $auths = Auth::user();
         $id = Auth::id();
 
+      if($request->isMethod('post')){
         if($request->filled('searchInput'))
         {
             $searchInput = $request->input('searchInput');
 
             $searchAlls = User::where('username','LIKE',"%$searchInput%")->whereNotIn('id', [$id])->get();
 
-            return view('users.search' , [ 'auths' => $auths , 'searchAlls' => $searchAlls,'searchInput' => $searchInput]);
+            return view('users.search' , [ 'auths' => $auths , 'searchAlls' => $searchAlls , 'searchInput' => $searchInput]);
         }
         elseif($request->filled('follow'))
         {
@@ -52,6 +53,7 @@ class UsersController extends Controller
 
             return redirect('/search');
         }
+      }
 
         $searchAlls = User::whereNotIn('id', [$id])->get();
         return view('users.search' , [ 'auths' => $auths , 'searchAlls' => $searchAlls]);

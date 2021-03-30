@@ -31,6 +31,7 @@ Route::get('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
 Route::get('/top','PostsController@index')->name('top');
+Route::post('/top','PostsController@index')->name('top');
 
 Route::get('/logout','UsersController@logout');
 
@@ -39,8 +40,8 @@ Route::get('/profile/{id}' , 'UsersController@profile');
 Route::get('/profile' , 'PostsController@profile');
 Route::post('/profile' , 'PostsController@profile');
 
-Route::get('/search','UsersController@index');
+Route::get('/search','UsersController@search');
+Route::post('/search','UsersController@search');
 
 Route::get('/follow-list','FollowsController@followList');
-
 Route::get('/follower-list','FollowsController@followerList');

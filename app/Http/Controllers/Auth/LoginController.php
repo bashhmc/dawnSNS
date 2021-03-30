@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
+use AuthenticatesAndRegistersUsers;
 
 class LoginController extends Controller
 {
@@ -43,12 +44,10 @@ class LoginController extends Controller
         if($request->isMethod('post')){
 
             $data=$request->only('mail','password');
-            // ログインが成功したら、トップページへ
-            //↓ログイン条件は公開時には消すこと
+
+            // login処理
             if(Auth::attempt($data)){
-                // 認証に成功した場合
                 return redirect('/top');
-                //ログイン後のヘッダーに表示するためのユーザー名を取得する。
             }
         }
         return view("auth.login");

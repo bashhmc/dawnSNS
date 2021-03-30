@@ -24,13 +24,14 @@ class PostsController extends Controller
         // login user情報取得
         $auths = Auth::user();
 
-        // タイムライン
+        // TimeLine
         $id = Auth::id();
         $follow_ids = Follow::where('follower',$id)->pluck('follow')->toArray();
         $follow_ids[] = $id;
         $timeLines = $post->getTimelines($follow_ids) ;
 
         // 投稿create
+      if($request->isMethod('post')){
         if ($request->filled('newPost'))
         {
             $user_post = $request->input('newPost');
@@ -57,6 +58,7 @@ class PostsController extends Controller
 
             return redirect('/top');
         }
+      }
 
         return view('posts.index' , [ 'auths' => $auths , 'timeLines' => $timeLines]);
 
@@ -68,8 +70,8 @@ class PostsController extends Controller
         $id = Auth::id();
 
         $user_profiles = User::where('id',$id)->get();
-        $all_form = "";
 
+    // バリデーション内容
     $validateRules = [
         'username' => 'required|min:4|max:12',
         'mail' => 'required|min:4|max:12|unique:users,mail,'.$id.'',
@@ -91,6 +93,7 @@ class PostsController extends Controller
         "image" => "jpg,png,bmp,gif,svgの拡張子のみ有効です"
     ];
 
+        // 更新処理
         if($request->filled('username'))
         {
             $auth_id = User::find($id);
@@ -112,7 +115,7 @@ class PostsController extends Controller
                 $form_image_getName=$auths->id.".png";
             }
 
-            // バリデーション
+            // バリデーション処理
             if($val->fails())
             {
                return back()->withErrors($val)->WithInput();
@@ -141,16 +144,6 @@ class PostsController extends Controller
                 'nothashpassword'=>$all_form['new-password']])
             ->save();
             }
-
-        // $auth_id
-        // ->fill([
-        //     'username'=>$all_form['username'],
-        //     'mail'=>$all_form['mail'],
-        //     'password'=>bcrypt($all_form['new-password']),
-        //     'bio'=>$all_form['bio'],
-        //     'images'=>$form_image_getName,
-        //     'nothashpassword'=>$all_form['new-password']])
-        // ->save();
 
         return view('users.profile',['auths'=>$auths , 'user_profiles'=>$user_profiles]);
         }

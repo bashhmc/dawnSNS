@@ -5,7 +5,7 @@
 <!-- 投稿フォーム -->
 <div id="PostForm" class="post-form">
 <img class="postform-image" src="images/{{ $auths -> images }}" alt="user-image">
-  {!! Form::open(['url' => '/top' ,'method' => 'get', 'class' => 'form-class']) !!}
+  {!! Form::open(['url' => '/top' ,'method' => 'post', 'class' => 'form-class']) !!}
   <div id="FormGroup">
     {!! Form::input('text', 'newPost', null, ['required','class' => 'form-control', 'placeholder' => '何をつぶやこうか…？' ] )!!}
   </div>
@@ -30,9 +30,9 @@
     <p class="post-username">{{ $timeLine -> user -> username}}</p>
     <p class="post-created-at">{{ $timeLine -> created_at }}</p>
     <p class="post-contents">{{ $timeLine -> posts }}</p>
-      @if($auths->post->userPost($auths->id,$timeLine->user_id))
+      @if($auths->id == $timeLine->user_id)
         <!-- Trash -->
-        {!! Form::open(['url' => '/top','method' => 'get']) !!}
+        {!! Form::open(['url' => '/top','method' => 'post']) !!}
         <button class="post-trash" name="trashId" value="{{ $timeLine -> id }}" onclick="return confirm('このつぶやきを削除します。よろしいでしょうか？')">
           <img class="trash" src="images/trash.png" alt="post-trash-image">
         </button>
@@ -45,7 +45,7 @@
         <div class="edit-modal" id="post-modal-{{ $timeLine -> id }}">
           <div class="inner">
             <div class="inner-contents">
-              {!! Form::open(['url' => '/top','method' => 'get']) !!}
+              {!! Form::open(['url' => '/top','method' => 'post']) !!}
                 {!! Form::hidden('id', $timeLine -> id) !!}
                 {!! Form::text('editPost', $timeLine -> posts, ['required', 'class'=>'user-post-edit-contents'])!!}
                 <p class="contents-validator">編集画面が表示されると、選択された投稿内容が初期から入っているように<br>最大200文字までとする</p>
